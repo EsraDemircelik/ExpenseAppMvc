@@ -1,0 +1,127 @@
+﻿@using ExpenseAppMvc.Models
+@model List<ExpenseForm>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+public ActionResult Search(string p,Log log)
+        {
+            try
+            {
+                var expenseForms = from x in c.ExpenseForms select x;
+                if (!string.IsNullOrEmpty(p))
+                {
+                    expenseForms = expenseForms.Where(y => y.Description.Contains(p) || y.RejectReason.Contains(p));
+                }
+                return View(expenseForms.ToList());
+            }
+            catch (Exception ex)
+            {
+                c.Logs.Add(log);
+                c.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult NewExpenseForm()
+        {
+            List<SelectListItem>
+    value = (from x in c.Currencies.ToList()
+    select new SelectListItem
+    {
+    Text = x.Code,
+    Value = x.Id.ToString()
+    }).ToList();
+
+    List<SelectListItem>
+        uservalue = (from x in c.Users.ToList()
+        select new SelectListItem
+        {
+        Text = x.Name,
+        Value = x.Id.ToString()
+        }).ToList();
+
+        List<SelectListItem>
+            expenseStatusValue = (from x in c.ExpenseStatuses.ToList()
+            select new SelectListItem
+            {
+            Text = x.Name,
+            Value = x.Id.ToString()
+            }).ToList();
+
+            ViewBag.newvalue = value;
+            ViewBag.newuser = uservalue;
+            ViewBag.newExpenseStatusValue = expenseStatusValue;
+            return View();
+            }
+            [HttpPost]
+            public ActionResult NewExpenseForm(ExpenseForm expense)
+            {
+            c.ExpenseForms.Add(expense);
+            c.SaveChanges();
+            return RedirectToAction("Index");
+            }
+
+            public ActionResult ExpenseFormDelete(int id)
+            {
+            var value = c.ExpenseForms.Find(id);
+            value.IsDeleted = false;
+            c.SaveChanges();
+            return RedirectToAction("Index");
+            }
+
+            public ActionResult ExpenseFormUpdate(int id)
+            {
+            List<SelectListItem>
+                value = (from x in c.Currencies.ToList()
+                select new SelectListItem
+                {
+                Text = x.Code,
+                Value = x.Id.ToString()
+                }).ToList();
+
+                List<SelectListItem>
+                    uservalue = (from x in c.Users.ToList()
+                    select new SelectListItem
+                    {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                    }).ToList();
+
+                    List<SelectListItem>
+                        expenseStatusValue = (from x in c.ExpenseStatuses.ToList()
+                        select new SelectListItem
+                        {
+                        Text = x.Name,
+                        Value = x.Id.ToString()
+                        }).ToList();
+                        ViewBag.newvalue = value;
+                        ViewBag.newuser = uservalue;
+                        ViewBag.newExpenseStatusValue = expenseStatusValue;
+                        var expenseFormValue = c.ExpenseForms.Find(id);
+                        return View("ExpenseFormUpdate", expenseFormValue);
+                        }
+
+                        public ActionResult ExpenseFormInformation(ExpenseForm expenseForm)
+                        {
+                        var expenseFormValue = c.ExpenseForms.Find(expenseForm.Id);
+                        expenseFormValue.Description = expenseForm.Description;
+                        expenseFormValue.RejectReason = expenseForm.RejectReason;
+                        expenseFormValue.CreateDate = expenseForm.CreateDate;
+                        expenseFormValue.IsDeleted = expenseForm.IsDeleted;
+                        expenseFormValue.CurrencyId = expenseForm.CurrencyId;
+                        expenseFormValue.ExpenseStatusId = expenseForm.ExpenseStatusId;
+                        expenseFormValue.UserId = expenseForm.UserId;
+
+                        c.SaveChanges();
+                        return RedirectToAction("Index");
+                        }
+
+                        public ActionResult ApprovalProcess(int id)
+                        {
+                        var approvalProcess = c.ExpenseForms.Where(x => x.Id == id).ToList();
+                        return View(approvalProcess);
+                        }
+                        }

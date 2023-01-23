@@ -1,0 +1,75 @@
+﻿@using ExpenseAppMvc.Models
+@model List<ExpenseForm>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<br />
+@using (Html.BeginForm("Search", "ExpenseForm", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("p")
+        <input type="submit" value="Search" />
+    </p>
+}
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Expense Form Id</th>
+        <th>Description</th>
+        @*<th>Reason</th>*@
+        <th>Create Date</th>
+        <th>Currency </th>
+        <th>Expense</th>
+        <th>User </th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Approval</th>
+        <th>History</th>
+    </tr>
+
+    @foreach (var e in Model)
+    {
+        if (e.IsDeleted == true && e.ExpenseStatusId == 2 && e.RejectReason == null)
+        {
+            <tr>
+                <td>@e.Id</td>
+                <td>@e.Description</td>
+                @*<td>@e.RejectReason</td>*@
+                <td>@e.CreateDate</td>
+                <td>@e.Currency.Code</td>
+                @*<td>@e.CurrencyId</td>*@
+                @*<td>@e.ExpenseStatusId</td>*@
+                <td>@e.ExpenseStatus.Name</td>
+                @*<td>@e.UserId</td>*@
+                <td>@e.User.Name</td>
+                <td>
+                    <a href="/ExpenseForm/ExpenseFormDelete/@e.Id" id="btn2" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <a href="/ExpenseForm/ExpenseFormUpdate/@e.Id" class="btn btn-success">Update</a>
+                </td>
+                <td>
+                    <a href="/ExpenseForm/ApprovalProcess/@e.Id" class="btn btn-success">Approval</a>
+                </td>
+                <td>
+                    <a href="/ExpenseForm/NewExpenseFormHistory/" class="btn btn-success">History</a>
+                </td>
+
+            </tr>
+        }
+
+    }
+</table>
+<a href="/ExpenseForm/NewExpenseForm/" class="btn btn-success">New ExpenseForm</a>
+
+<script>
+    $('#btn2').click(function () {
+        swal("Expense Forms Deleted!");
+    });
+</script>
+

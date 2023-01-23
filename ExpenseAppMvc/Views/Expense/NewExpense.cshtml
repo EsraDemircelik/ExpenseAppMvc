@@ -1,0 +1,43 @@
+﻿@model ExpenseAppMvc.Models.Expense
+@{
+    ViewBag.Title = "NewExpense";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<br />
+<form class="form-group" method="post">
+
+
+    @Html.LabelFor(x => x.Description)
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.Amount)
+    @Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Amount, "", new { @class = "text-danger" })
+
+    <br />
+
+    @Html.LabelFor(x => x.CreateDate)
+    @Html.TextBoxFor(x => x.CreateDate, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.IsDeleted)
+    @Html.TextBoxFor(x => x.IsDeleted, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseForm)
+    @Html.DropDownListFor(x => x.ExpenseFormId, (List<SelectListItem>)ViewBag.valueDescription, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary" id="btn1">Add</button>
+
+    <script>
+        $('#btn1').click(function () {
+            swal("Expense Added!");
+        });
+    </script>
+
+</form>
+

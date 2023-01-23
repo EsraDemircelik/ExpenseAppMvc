@@ -1,0 +1,45 @@
+﻿@using ExpenseAppMvc.Models
+@model List<ExpenseForm>
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/AccountantLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+@using (Html.BeginForm("Payment", "Accountant", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+
+    @Html.LabelFor(x => x.UserId)
+    @Html.DropDownListFor(x => x.UserId, (List<SelectListItem>)ViewBag.newuser, new
+       { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.CurrencyId)
+    @Html.DropDownListFor(x => x.CurrencyId, (List<SelectListItem>)ViewBag.newvalue, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseStatusId)
+    @Html.DropDownListFor(x => x.ExpenseStatusId, (List<SelectListItem>)ViewBag.newExpenseStatusValue, new
+       { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.Description)
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.RejectReason)
+    @Html.TextBoxFor(x => x.RejectReason, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.CreateDate)
+    @Html.TextBoxFor(x => x.CreateDate, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-warning" id="payment">Payment</button>
+    <script>
+        $('#payment').click(function () {
+            swal("Expense Forms Payment!");
+        });
+    </script>
+}

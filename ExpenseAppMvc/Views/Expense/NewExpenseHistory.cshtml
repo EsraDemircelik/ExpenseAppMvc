@@ -1,0 +1,61 @@
+﻿@model ExpenseAppMvc.Models.ExpenseHistory
+@{
+    ViewBag.Title = "NewExpenseHistory";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<br />
+<form class="form-group" method="post">
+
+
+    @Html.LabelFor(x => x.ExpenseId)
+    @Html.TextBoxFor(x => x.ExpenseId, new { @class = "form-control" })
+    <br />
+
+
+    @Html.LabelFor(x => x.UserId)
+    @Html.TextBoxFor(x => x.UserId, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.ExpenseDescription)
+    @Html.TextBoxFor(x => x.ExpenseDescription, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseAmount)
+    @Html.TextBoxFor(x => x.ExpenseAmount, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ExpenseAmount, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseFormId)
+    @Html.TextBoxFor(x => x.ExpenseFormId, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseDate)
+    @Html.TextBoxFor(x => x.ExpenseDate, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseFormHistoryId)
+    @Html.TextBoxFor(x => x.ExpenseFormHistoryId, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.CraeteDate)
+    @Html.TextBoxFor(x => x.CraeteDate, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.IsExpenseDeleted)
+    @Html.TextBoxFor(x => x.IsExpenseDeleted, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-primary" id="btn1">Add</button>
+
+    <script>
+        $('#btn1').click(function () {
+            swal("Expense History Added!");
+        });
+    </script>
+
+</form>
+
+
+

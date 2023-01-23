@@ -1,0 +1,55 @@
+﻿@model ExpenseAppMvc.Models.ExpenseFormHistory
+@{
+    ViewBag.Title = "NewExpenseFormHistory";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<br />
+<h2>NewExpenseForm</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.ExpenseFormId)
+    @Html.TextBoxFor(x => x.ExpenseFormId, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseFormStatusId)
+
+    @Html.DropDownListFor(x => x.ExpenseFormStatusId, (List<SelectListItem>)ViewBag.newExpenseStatusValue, new { @class = "form-control" })
+    @*@Html.TextBoxFor(x => x.ExpenseFormStatusId, new { @class = "form-control" })*@
+    <br />
+    @Html.LabelFor(x => x.UserId)
+    @*@Html.TextBoxFor(x => x.UserId, new { @class = "form-control" })*@
+    @Html.DropDownListFor(x => x.UserId, (List<SelectListItem>)ViewBag.newuser, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.ExpenseFormCurrencyId)
+    @*@Html.TextBoxFor(x => x.ExpenseFormCurrencyId, new { @class = "form-control" })*@
+    @Html.DropDownListFor(x => x.ExpenseFormCurrencyId, (List<SelectListItem>)ViewBag.newvalue, new { @class = "form-control" })
+    <br />
+
+
+    @Html.LabelFor(x => x.ExpenseFormRejectReason)
+    @Html.TextBoxFor(x => x.ExpenseFormRejectReason, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseFormDescription)
+    @Html.TextBoxFor(x => x.ExpenseFormDescription, new { @class = "form-control" })
+    <br />
+
+
+    @Html.LabelFor(x => x.CreateDate)
+    @Html.TextBoxFor(x => x.CreateDate, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.IsExpenseFormDeleted)
+    @Html.TextBoxFor(x => x.IsExpenseFormDeleted, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-primary" id="btn1">Add</button>
+
+    <script>
+        $('#btn1').click(function () {
+            swal("Expense Forms History Added!");
+        });
+    </script>
+</form>

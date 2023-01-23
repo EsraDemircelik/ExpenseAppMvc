@@ -1,0 +1,45 @@
+﻿@model ExpenseAppMvc.Models.ExpenseForm
+@{
+    ViewBag.Title = "ExpenseFormInformation";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>ExpenseFormInformation</h2>
+
+@using (Html.BeginForm("ExpenseFormInformation", "ExpenseForm", FormMethod.Post))
+{
+    @Html.HiddenFor(x=>x.Id)
+    @Html.LabelFor(x => x.UserId)
+    @Html.TextBoxFor(x => x.UserId, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.CurrencyId)
+    @Html.TextBoxFor(x => x.CurrencyId, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseStatusId)
+    @Html.TextBoxFor(x => x.ExpenseStatusId, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.Description)
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.RejectReason)
+    @Html.TextBoxFor(x => x.RejectReason, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.CreateDate)
+    @Html.TextBoxFor(x => x.CreateDate, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.IsDeleted)
+    @Html.TextBoxFor(x => x.IsDeleted, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-warning">Update</button>
+
+}
+
+
+
+

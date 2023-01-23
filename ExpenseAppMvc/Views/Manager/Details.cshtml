@@ -1,0 +1,48 @@
+﻿@using ExpenseAppMvc.Models;
+@model List<Expense>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+<br />
+@using (Html.BeginForm("Search", "Expense", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("p")
+        <input type="submit" value="Search" />
+    </p>
+}
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Create Date</th>
+        <th>Expense Form Description</th>
+    </tr>
+    @foreach (var e in Model)
+    {
+        if (e.IsDeleted == true)
+        {
+            <tr>
+
+                <td>@e.Id</td>
+                <td>@e.Description</td>
+                <td>@e.Amount</td>
+                <td>@e.CreateDate</td>
+                <td>@e.ExpenseForm.Description</td>
+
+            </tr>
+        }
+    }
+</table>
+<br />
+@*<div class="container">
+    @ViewBag.toplam
+</div>*@
+<br />
+<a href="/Manager/Index/" class="btn btn-info">Expense Forms</a>
+
+

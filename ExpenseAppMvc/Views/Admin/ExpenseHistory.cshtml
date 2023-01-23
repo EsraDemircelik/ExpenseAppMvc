@@ -1,0 +1,49 @@
+﻿@using ExpenseAppMvc.Models
+@model List<ExpenseHistory>
+@{
+    ViewBag.Title = "ExpenseHistory";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+@using (Html.BeginForm("Search", "Admin", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("p")
+        <input type="submit" value="Search" />
+    </p>
+}
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Expense Id</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Expense Form Id</th>
+        <th>Expense Date</th>
+        <th>Expense Form Status Id</th>
+        <th>Expense Form History Id</th>
+        <th>Create Date</th>
+        <th>Is Deleted</th>
+
+    </tr>
+
+    @foreach (var e in Model)
+    {
+        <tr>
+            <td>@e.ExpenseId</td>
+            <td>@e.ExpenseDescription</td>
+            <td>@e.ExpenseAmount</td>
+            <td>@e.ExpenseFormId</td>
+            <td>@e.ExpenseDate</td>
+            <td>@e.ExpenseFormStatusId</td>
+            <td>@e.ExpenseFormHistoryId</td>
+            <td>@e.CraeteDate</td>
+            <td>@e.IsExpenseDeleted</td>
+        </tr>
+    }
+</table>
+
+
+

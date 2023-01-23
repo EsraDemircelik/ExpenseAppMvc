@@ -1,0 +1,49 @@
+﻿@using ExpenseAppMvc.Models
+@model List<ExpenseForm>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+<br />
+@using (Html.BeginForm("Search", "Manager", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("p")
+        <input type="submit" value="Search" placeholder="Aranacak Kelime Giriniz" />
+    </p>
+}
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Description</th>
+        <th>Create Date</th>
+        <th>Currency </th>
+        <th>Expense</th>
+        <th>User </th>
+        <th>Reject Reason</th>
+        <th>Details</th>
+    </tr>
+
+    @foreach (var e in Model)
+    {
+        if (e.ExpenseStatusId == 2)
+        {
+<tr>
+    <td>@e.Description</td>
+    <td>@e.CreateDate</td>
+    <td>@e.Currency.Code</td>
+    <td>@e.ExpenseStatus.Name</td>
+    @*<td>@e.UserId</td>*@
+    <td>@e.User.Name</td>
+    <td>
+        <a href="/Manager/RejectReason/@e.Id" class="btn btn-success">Reject Reason</a>
+    </td>
+    <td>
+        <a href="/Manager/Details/@e.Id" class="btn btn-success">Details</a>
+    </td>
+</tr>
+        }
+
+    }
+</table>

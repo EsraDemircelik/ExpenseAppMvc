@@ -1,0 +1,93 @@
+﻿@model ExpenseAppMvc.Models.ExpenseForm
+@*@model Tuple<ExpenseAppMvc.Models.ExpenseForm, ExpenseAppMvc.Models.ExpenseFormHistory>*@
+@{
+    ViewBag.Title = "NewExpenseForm";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+
+    <h2>NewExpenseForm</h2>
+    <form class="form-group" method="post">
+        @Html.LabelFor(x => x.UserId)
+        @Html.DropDownListFor(x => x.UserId, (List<SelectListItem>)ViewBag.newuser, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(x => x.CurrencyId)
+        @Html.DropDownListFor(x => x.CurrencyId, (List<SelectListItem>)ViewBag.newvalue, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(x => x.ExpenseStatusId)
+        @Html.DropDownListFor(x => x.ExpenseStatusId, (List<SelectListItem>)ViewBag.newExpenseStatusValue, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(x => x.Description)
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(x => x.RejectReason)
+        @Html.TextBoxFor(x => x.RejectReason, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(x => x.CreateDate)
+        @Html.TextBoxFor(x => x.CreateDate, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(x => x.IsDeleted)
+        @Html.TextBoxFor(x => x.IsDeleted, new { @class = "form-control" })
+        <br />
+
+        <button class="btn btn-primary" id="btn1">Add</button>
+
+        <script>
+            $('#btn1').click(function () {
+                swal("Expense Forms Added!");
+            });
+        </script>
+    </form>
+
+@*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.Item1.UserId)
+    @Html.DropDownListFor(x => x.Item1.UserId, (List<SelectListItem>)ViewBag.newuser, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.Item1.CurrencyId)
+    @Html.DropDownListFor(x => x.Item1.CurrencyId, (List<SelectListItem>)ViewBag.newvalue, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.Item1.ExpenseStatusId)
+    @Html.DropDownListFor(x => x.Item1.ExpenseStatusId, (List<SelectListItem>)ViewBag.newExpenseStatusValue, new
+       { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.Description)
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.RejectReason)
+    @Html.TextBoxFor(x => x.RejectReason, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.CreateDate)
+    @Html.TextBoxFor(x => x.CreateDate, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.IsDeleted)
+    @Html.TextBoxFor(x => x.IsDeleted, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-primary" id="btn1">Add</button>
+
+    <script>
+        $('#btn1').click(function () {
+            swal("Expense Forms Added!");
+        });
+    </script>
+</form>*@
+
+
+

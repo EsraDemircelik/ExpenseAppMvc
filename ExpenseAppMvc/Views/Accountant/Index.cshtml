@@ -1,0 +1,44 @@
+﻿@using ExpenseAppMvc.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AccountantLayout.cshtml";
+}
+<br />
+@using (Html.BeginForm("Search", "Accountant", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("p")
+        <input type="submit" value="Search" />
+    </p>
+}
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Description</th>
+        <th>Create Date</th>
+        <th>Currency </th>
+        <th>Expense</th>
+        <th>User </th>
+        <th>Payment</th>
+    </tr>
+
+    @foreach (var e in Model)
+    {
+        <tr>
+            <td>@e.Description</td>
+            <td>@e.CreateDate</td>
+            <td>@e.Currency.Code</td>
+            <td>@e.ExpenseStatus.Name</td>
+            @*<td>@e.UserId</td>*@
+            <td>@e.User.Name</td>
+            <td>
+                <a href="/Accountant/PaymentProcess/@e.Id" class="btn btn-success">Payment</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+

@@ -1,0 +1,45 @@
+﻿@model ExpenseAppMvc.Models.Expense
+@{
+    ViewBag.Title = "ExpenseGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Expense Update</h2>
+<br />
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+@using (Html.BeginForm("ExpenseUpdate", "Expense", FormMethod.Post))
+{
+    @Html.HiddenFor(x=>x.Id)
+    @Html.LabelFor(x => x.Description)
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.Amount)
+    @Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.CreateDate)
+    @Html.TextBoxFor(x => x.CreateDate, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.IsDeleted)
+    @Html.TextBoxFor(x => x.IsDeleted, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.ExpenseForm)
+    @*@Html.TextBoxFor(x => x.ExpenseFormId, new { @class = "form-control" })*@
+    @Html.DropDownListFor(x => x.ExpenseFormId, (List<SelectListItem>)ViewBag.valueDescription, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary" id="updatebtn">Save</button>
+
+    <script>
+        $('#updatebtn').click(function () {
+            alert("Expense Updated!");
+        });
+    </script>
+}
+
+
